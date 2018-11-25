@@ -13,9 +13,15 @@ public class Configurator {
     public static void configure(HomeEventsObserver homeEventObserver, SmartHome smartHome) {
 
         Collection<EventProcessor> homeEventsProcessorCollection = new ArrayList<>();
-        homeEventsProcessorCollection.add(new LightsEventProcessor(smartHome));
-        homeEventsProcessorCollection.add(new DoorEventProcessor(smartHome));
-        homeEventsProcessorCollection.add(new HallDoorEventProcessor(smartHome));
+        homeEventsProcessorCollection.add(new SendSMSDecorator(new AlarmSirenDecorator(
+                new LightsEventProcessor(smartHome), smartHome), smartHome));
+
+        homeEventsProcessorCollection.add(new SendSMSDecorator(new AlarmSirenDecorator(
+                new DoorEventProcessor(smartHome), smartHome), smartHome));
+
+        homeEventsProcessorCollection.add(new SendSMSDecorator(new AlarmSirenDecorator(
+                new HallDoorEventProcessor(smartHome), smartHome), smartHome));
+        homeEventsProcessorCollection.add(new AlarmEventProcessor(smartHome));
 
         homeEventObserver.addAllEventProcessors(homeEventsProcessorCollection);
     }

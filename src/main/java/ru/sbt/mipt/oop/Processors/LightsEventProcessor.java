@@ -16,6 +16,7 @@ public class LightsEventProcessor implements EventProcessor {
     }
 
     public void processEvent( SensorEvent event) {
+//        System.out.println(smartHome.getChildren().toString());
         if (!isLightEvent(event)) return;
         smartHome.execute(object -> {
             if (object instanceof Light) {

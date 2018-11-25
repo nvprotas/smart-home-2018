@@ -24,7 +24,7 @@ public class HomeEventsObserver {
             for (EventProcessor p : eventProcessors) {
                 p.processEvent(event);
             }
-            System.out.println(event +" processed");
+//            System.out.println(event +" processed");
             event = eventGenerator.getNextSensorEvent();
         }
     }
@@ -34,6 +34,7 @@ public class HomeEventsObserver {
             eventProcessors = new ArrayList<>();
         }
         eventProcessors.addAll(processors);
+//        System.out.println("Processors added: " + processors.toString());
         System.out.println("Processors added");
     }
 }
