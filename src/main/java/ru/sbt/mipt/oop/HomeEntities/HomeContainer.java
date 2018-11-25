@@ -1,8 +1,7 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.HomeEntities;
 
 import java.util.Collection;
 
-//сущность, содержащая другие элементы дома
 public interface HomeContainer extends HomeEntity {
     Collection<HomeEntity> getChildren();
 }

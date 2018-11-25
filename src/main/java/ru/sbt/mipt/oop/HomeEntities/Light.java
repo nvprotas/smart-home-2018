@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.HomeEntities;
+
+import ru.sbt.mipt.oop.Action;
 
 public class Light implements HomeLeaf{
     private boolean isOn;

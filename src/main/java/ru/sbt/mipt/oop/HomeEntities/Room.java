@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.HomeEntities;
+
+import ru.sbt.mipt.oop.Action;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,7 +1,11 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.Processors;
 
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_OFF;
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
+import ru.sbt.mipt.oop.HomeEntities.Light;
+import ru.sbt.mipt.oop.HomeEntities.SmartHome;
+import ru.sbt.mipt.oop.Sensors.SensorEvent;
+
+import static ru.sbt.mipt.oop.Sensors.SensorEventType.LIGHT_OFF;
+import static ru.sbt.mipt.oop.Sensors.SensorEventType.LIGHT_ON;
 
 public class LightsEventProcessor implements EventProcessor {
 
@@ -18,15 +22,12 @@ public class LightsEventProcessor implements EventProcessor {
                 Light light = (Light)object;
                 if (event.getType() == LIGHT_ON) {
                     light.setState(event.getObjectId(), true);
-//                    System.out.println("Light " + light.getId() + " was switched on");
                 } else {
                     light.setState(event.getObjectId(), false);
-//                    System.out.println("Light " + light.getId() + " was switched off");
                 }
             }
         });
     }
-
 
     private boolean isLightEvent(SensorEvent event) {
         return event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF;
