@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light implements HomeLeaf{
     private boolean isOn;
     private final String id;
 
@@ -9,15 +9,23 @@ public class Light {
         this.isOn = isOn;
     }
 
-    public boolean isOn() {
-        return isOn;
-    }
-
     public String getId() {
         return id;
     }
 
-    public void setOn(boolean on) {
-        isOn = on;
+    public void setState(String componentId,boolean on) {
+        if (componentId.equals(id)){
+            isOn = on;
+            if (on) {
+                System.out.println("Light " + id  + " was switched on.");
+            } else {
+                System.out.println("light " + id  + "  was switched off.");
+            }
+        }
+    }
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
     }
 }

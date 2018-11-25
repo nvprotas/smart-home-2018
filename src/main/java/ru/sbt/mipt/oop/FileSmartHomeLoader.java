@@ -12,6 +12,8 @@ public class FileSmartHomeLoader implements SmartHomeLoader {
         // считываем состояние дома из файла
         Gson gson = new Gson();
         String json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));
+        System.out.println("smarthome loaded");
         return gson.fromJson(json, SmartHome.class);
+
     }
 }
