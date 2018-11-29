@@ -1,18 +1,18 @@
 package ru.sbt.mipt.oop.Alarm;
 
-public class AlarmSirenSounds {
+public class AlarmSiren implements AlarmState {
     private String password = "StRoNgPaSsWoRd";
     private AlarmState state = new AlarmDisabled(this);
 //    private AlarmState state = new AlarmEnabled(this, "");
 
-    public AlarmSirenSounds() {
+    public AlarmSiren()  {
     }
 
-    public AlarmSirenSounds(String password) {
+    public AlarmSiren(String password) {
         this.password = password;
     }
 
-    void changeState(AlarmState state) {
+    public void changeState(AlarmState state) {
         this.state = state;
     }
 

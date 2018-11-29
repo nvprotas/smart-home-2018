@@ -16,12 +16,12 @@ public class SendSMSDecorator implements EventProcessor {
 
     @Override
     public void processEvent(SensorEvent event) {
-//        System.out.println(smartHome.getAlarmSirenSounds().toString());
-        if (smartHome.getAlarmSirenSounds().getState() instanceof AlarmEnabled) {
+//        System.out.println(smartHome.getAlarmSiren().toString());
+        if (smartHome.getAlarmSiren().getState() instanceof AlarmEnabled) {
             System.out.println("SMS:Home invasion! " + event.toString());
             return;
         }
-        if (smartHome.getAlarmSirenSounds().getState() instanceof Alarm) {
+        if (smartHome.getAlarmSiren().getState() instanceof Alarm) {
             System.out.println("SMS:Home invasion! " + event.toString());
             return;
         }

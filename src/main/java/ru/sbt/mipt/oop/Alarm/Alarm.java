@@ -1,16 +1,16 @@
 package ru.sbt.mipt.oop.Alarm;
 
 public class Alarm implements AlarmState {
-    private AlarmSirenSounds alarmSirenSounds;
+    private AlarmSiren alarmSiren;
 
-    public Alarm(AlarmSirenSounds alarmSirenSounds) {
-        this.alarmSirenSounds = alarmSirenSounds;
+    public Alarm(AlarmSiren alarmSiren) {
+        this.alarmSiren = alarmSiren;
         System.out.println("Wiu - Wiu");
     }
 
     @Override
     public void changeState(AlarmState state) {
-        alarmSirenSounds.changeState(state);
+        alarmSiren.changeState(state);
     }
 
     @Override
@@ -20,8 +20,8 @@ public class Alarm implements AlarmState {
 
     @Override
     public void deactivate(String password) {
-        if (alarmSirenSounds.checkPassword(password)){
-            alarmSirenSounds.changeState(new AlarmDisabled(alarmSirenSounds));
+        if (alarmSiren.checkPassword(password)){
+            alarmSiren.changeState(new AlarmDisabled(alarmSiren));
             System.out.println("Alarm disabled");
         } else {
             System.out.println("Wrong password");

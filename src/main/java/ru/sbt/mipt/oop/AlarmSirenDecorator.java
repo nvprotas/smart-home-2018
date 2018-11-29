@@ -18,11 +18,11 @@ public class AlarmSirenDecorator implements EventProcessor {
 
     @Override
     public void processEvent(SensorEvent event) {
-        if (smartHome.getAlarmSirenSounds().getState() instanceof AlarmEnabled) {
-            smartHome.getAlarmSirenSounds().setToAlarm();
+        if (smartHome.getAlarmSiren().getState() instanceof AlarmEnabled) {
+            smartHome.getAlarmSiren().setToAlarm();
             return;
         }
-        if (smartHome.getAlarmSirenSounds().getState() instanceof Alarm) {
+        if (smartHome.getAlarmSiren().getState() instanceof Alarm) {
             return;
         }
 //        System.out.println("событие: " +event.toString() + " послано дальше в " + eventProcessor.toString());

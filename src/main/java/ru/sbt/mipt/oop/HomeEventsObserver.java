@@ -9,9 +9,9 @@ import java.util.Collection;
 
 public class HomeEventsObserver {
     static Collection<EventProcessor> eventProcessors = null;
-    RandomSensorEventProvider eventGenerator;
+    SensorEventProvider eventGenerator;
 
-    public HomeEventsObserver(RandomSensorEventProvider eventGenerator) {
+    public HomeEventsObserver(SensorEventProvider eventGenerator) {
         this.eventGenerator = eventGenerator;
     }
 
@@ -36,5 +36,13 @@ public class HomeEventsObserver {
         eventProcessors.addAll(processors);
 //        System.out.println("Processors added: " + processors.toString());
         System.out.println("Processors added");
+    }
+
+    public void addEventProcessor(EventProcessor processor) {
+        if (eventProcessors == null) {
+            eventProcessors = new ArrayList<>();
+        }
+        eventProcessors.add(processor);
+        System.out.println("Processor added");
     }
 }

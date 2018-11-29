@@ -1,9 +1,7 @@
 package ru.sbt.mipt.oop.HomeEntities;
 
 import ru.sbt.mipt.oop.Action;
-import ru.sbt.mipt.oop.Alarm.Alarm;
-import ru.sbt.mipt.oop.Alarm.AlarmEnabled;
-import ru.sbt.mipt.oop.Alarm.AlarmSirenSounds;
+import ru.sbt.mipt.oop.Alarm.AlarmSiren;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,17 +9,17 @@ import java.util.Collection;
 public class SmartHome implements HomeContainer{
     Collection<Room> rooms;
     Collection<HomeEntity> components;
-    private AlarmSirenSounds alarmSirenSounds;
+    private AlarmSiren alarmSiren;
 
 
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
-        this.alarmSirenSounds = new AlarmSirenSounds();
+        this.alarmSiren = new AlarmSiren();
         System.out.println("SmartHome Constructor");
     }
 
     public SmartHome() {
-        alarmSirenSounds = new AlarmSirenSounds();
+        alarmSiren = new AlarmSiren();
         components = new ArrayList<>();
     }
 
@@ -47,13 +45,13 @@ public class SmartHome implements HomeContainer{
         }
         components.forEach(c -> c.execute(action));
     }
-    public AlarmSirenSounds getAlarmSirenSounds() {
-        return alarmSirenSounds;
+    public AlarmSiren getAlarmSiren() {
+        return alarmSiren;
     }
     public void alarmEnable(String password) {
-        this.alarmSirenSounds.activate(password);
+        this.alarmSiren.activate(password);
     }
     public void alarmDisable(String password) {
-        this.alarmSirenSounds.deactivate(password);
+        this.alarmSiren.deactivate(password);
     }
 }
