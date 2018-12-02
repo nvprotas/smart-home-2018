@@ -18,12 +18,12 @@ public class CloseHallDoor implements Undoable {
     @Override
     public void undo() {
         smartHome.execute(o -> {
-            if (o instanceof Room){
-                Room room = (Room)o;
+            if (o instanceof Room) {
+                Room room = (Room) o;
                 if (room.getName().equals("hall")) {
                     room.execute(o1 -> {
                         if (o1 instanceof Door) {
-                            Door door = (Door)o1;
+                            Door door = (Door) o1;
                             door.setState(door.getId(), false);
                         }
                     });
@@ -36,24 +36,24 @@ public class CloseHallDoor implements Undoable {
     public void execute() {
         CommandHistory.addToHist(this);
         smartHome.execute(o -> {
-            if (o instanceof Room){
-                Room room = (Room)o;
-                if (room.getName().equals("hall")) {
-                    room.execute(o1 -> {
-                        if (o1 instanceof Door) {
-                            Door door = (Door)o1;
-                            door.setState(door.getId(), false);
+                    if (o instanceof Room) {
+                        Room room = (Room) o;
+                        if (room.getName().equals("hall")) {
+                            room.execute(o1 -> {
+                                if (o1 instanceof Door) {
+                                    Door door = (Door) o1;
+                                    door.setState(door.getId(), false);
+                                }
+                            });
+                            smartHome.execute(o2 -> {
+                                if (o2 instanceof Light) {
+                                    Light light = (Light) o2;
+                                    light.setState(light.getId(), false);
+                                }
+                            });
                         }
-                    });
-                    smartHome.execute(o2 -> {
-                        if (o2 instanceof Light) {
-                            Light light = (Light) o2;
-                            light.setState(light.getId(),false);
-                        }
-                    });
+                    }
                 }
-            }
-        }
         );
     }
 

@@ -1,6 +1,5 @@
 package ru.sbt.mipt.oop;
 
-import ru.sbt.mipt.oop.Alarm.Alarm;
 import ru.sbt.mipt.oop.Alarm.AlarmEnabled;
 import ru.sbt.mipt.oop.Alarm.AlarmSiren;
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
