@@ -54,4 +54,5 @@ public class SmartHome implements HomeContainer{
     public void alarmDisable(String password) {
         this.alarmSiren.deactivate(password);
     }
+    public void sirenEnable() {this.alarmSiren.setToAlarm();}
 }

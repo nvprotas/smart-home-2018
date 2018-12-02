@@ -16,17 +16,17 @@ public class Application {
 
     public static void main(String[] args) throws IOException {
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(HomeConfiguration.class);
-//        EvensManager evensManager = context.getBean(EvensManager.class);
-//        evensManager.Loop();
-        HomeEventsObserver observer = context.getBean(HomeEventsObserver.class);
-        observer.Loop(smartHome);
+//        ApplicationContext context = new AnnotationConfigApplicationContext(HomeConfiguration.class);
+////        EvensManager evensManager = context.getBean(EvensManager.class);
+////        evensManager.Loop();
+//        HomeEventsObserver observer = context.getBean(HomeEventsObserver.class);
+//        observer.Loop(smartHome);
 
-//        smartHome = new FileSmartHomeLoader().loadSmartHome();
-//        eventGenerator = new RandomSensorEventProvider();
-//        homeEventsObserver = new HomeEventsObserver(eventGenerator);
-//        Configurator.configure(homeEventsObserver, smartHome);
-//        homeEventsObserver.Loop(smartHome);
+        smartHome = new FileSmartHomeLoader().loadSmartHome();
+        eventGenerator = new RandomSensorEventProvider();
+        homeEventsObserver = new HomeEventsObserver(eventGenerator);
+        Configurator.configure(homeEventsObserver, smartHome);
+        homeEventsObserver.Loop(smartHome);
     }
 }
 
