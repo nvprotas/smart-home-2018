@@ -10,7 +10,7 @@ import ru.sbt.mipt.oop.Sensors.SensorEvent;
 import ru.sbt.mipt.oop.Sensors.SensorEventType;
 
 public class HomeEventsObserverNumTest {
-    int num = 100000;
+    int num = 100;
     HomeEventsObserver observer;
     @Before
     public void define(){

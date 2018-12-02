@@ -13,17 +13,11 @@ import ru.sbt.mipt.oop.RC.RemoteController;
 
 public class Application {
 
-//    static SmartHome smartHome;
-//    static RandomSensorEventProvider eventGenerator;
-//    static HomeEventsObserver homeEventsObserver;
-
     public static void main(String[] args) throws IOException {
 
         ApplicationContext context = new AnnotationConfigApplicationContext(HomeConfiguration.class);
         EventManager eventManager = context.getBean(EventManager.class);
 
-
-//        RemoteControlRegistry registry = new RemoteControlRegistry();
         RemoteController controller = new RemoteController("42");
         SmartHome smartHome = context.getBean(SmartHome.class);
         controller.linkButtonAndCommand("A", new TurnOnAllLights(smartHome, "42"));

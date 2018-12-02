@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class RemoteController implements RemoteControl {
 
-    private Map<String, Command> buttonCodeCommandMap = new HashMap<>();
+    public Map<String, Command> buttonCodeCommandMap = new HashMap<>();
     private String RCiD;
 
     public RemoteController(String RCiD) {
