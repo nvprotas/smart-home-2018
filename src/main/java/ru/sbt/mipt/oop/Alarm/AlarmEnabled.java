@@ -35,6 +35,6 @@ public class AlarmEnabled implements AlarmState {
     @Override
     public void setToAlarm() {
         System.out.println("Wiu - Wiu! Setted to Alarm");
-        changeState(new Alarm(alarmSiren));
+        changeState(new AlarmSiren());
     }
 }

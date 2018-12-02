@@ -16,7 +16,6 @@ public class SendSMSDecorator implements EventProcessor {
 
     @Override
     public void processEvent(SensorEvent event) {
-//        System.out.println(smartHome.getAlarmSiren().toString());
         if (smartHome.getAlarmSiren().getState() instanceof AlarmEnabled) {
             System.out.println("SMS:Home invasion! " + event.toString());
             return;
@@ -25,7 +24,6 @@ public class SendSMSDecorator implements EventProcessor {
             System.out.println("SMS:Home invasion! " + event.toString());
             return;
         }
-//        System.out.println("событие: " +event.toString() + " послано дальше в " + eventProcessor.toString());
         eventProcessor.processEvent(event);
     }
 }

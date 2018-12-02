@@ -6,7 +6,6 @@ public class AlarmDisabled implements AlarmState {
     public AlarmDisabled(AlarmSiren alarmSiren) {
         this.alarmSiren = alarmSiren;
         this.alarmSiren.setPassword("StRoNgPaSsWoRd");
-//        System.out.println("System disabled");
     }
 
     @Override
@@ -17,7 +16,7 @@ public class AlarmDisabled implements AlarmState {
     @Override
     public void activate(String password) {
         alarmSiren.changeState(new AlarmEnabled(alarmSiren,password));
-//        System.out.println("Alarm is enabled");
+        System.out.println("Alarm is enabled");
     }
 
     @Override
