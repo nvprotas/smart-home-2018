@@ -15,7 +15,6 @@ public class SmartHome implements HomeContainer{
     public SmartHome(Collection<Room> rooms) {
         this.rooms = rooms;
         this.alarmSiren = new AlarmSiren();
-        System.out.println("SmartHome Constructor");
     }
 
     public SmartHome() {

@@ -1,4 +1,4 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.Processors;
 
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
 import ru.sbt.mipt.oop.Processors.EventProcessor;

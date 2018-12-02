@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class HomeEventsObserver {
-    static Collection<EventProcessor> eventProcessors = null;
-    SensorEventProvider eventGenerator;
+    private static Collection<EventProcessor> eventProcessors = null;
+    private SensorEventProvider eventGenerator;
 
     public HomeEventsObserver(SensorEventProvider eventGenerator) {
         this.eventGenerator = eventGenerator;
@@ -24,18 +24,15 @@ public class HomeEventsObserver {
             for (EventProcessor p : eventProcessors) {
                 p.processEvent(event);
             }
-//            System.out.println(event +" processed");
             event = eventGenerator.getNextSensorEvent();
         }
     }
 
-    public void addAllEventProcessors( Collection<EventProcessor> processors) {
+    void addAllEventProcessors(Collection<EventProcessor> processors) {
         if (eventProcessors == null) {
             eventProcessors = new ArrayList<>();
         }
         eventProcessors.addAll(processors);
-//        System.out.println("Processors added: " + processors.toString());
-        System.out.println("Processors added");
     }
 
     public void addEventProcessor(EventProcessor processor) {

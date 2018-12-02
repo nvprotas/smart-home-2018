@@ -1,14 +1,9 @@
 package ru.sbt.mipt.oop.RC.Commands;
 
-import ru.sbt.mipt.oop.Action;
-import ru.sbt.mipt.oop.CommandType;
 import ru.sbt.mipt.oop.HomeEntities.Door;
 import ru.sbt.mipt.oop.HomeEntities.Light;
 import ru.sbt.mipt.oop.HomeEntities.Room;
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
-import ru.sbt.mipt.oop.Sensors.SensorEvent;
-import ru.sbt.mipt.oop.Sensors.SensorEventType;
-import static ru.sbt.mipt.oop.Sensors.SensorEventType.DOOR_CLOSED;
 
 public class CloseHallDoor implements Undoable {
 

@@ -4,10 +4,13 @@ import com.coolcompany.smarthome.events.SensorEventsManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import ru.sbt.mipt.oop.Adapters.EventsManagerAdapter;
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
+import ru.sbt.mipt.oop.Processors.AlarmEventProcessor;
 import ru.sbt.mipt.oop.Processors.DoorEventProcessor;
 import ru.sbt.mipt.oop.Processors.HallDoorEventProcessor;
 import ru.sbt.mipt.oop.Processors.LightsEventProcessor;
+import ru.sbt.mipt.oop.RC.RemoteControlRegistry;
 
 import java.io.IOException;
 
@@ -15,11 +18,13 @@ import java.io.IOException;
 @Configuration
 @ComponentScan
 public class HomeConfiguration {
-//    private static SmartHome smartHome;
+
+    private SmartHome smartHome;
 
     @Bean
-    SmartHome smartHome() throws IOException {
-        return smartHomeLoader().loadSmartHome();
+    SmartHome smartHome(SmartHomeLoader loader) throws IOException {
+        this.smartHome = loader.loadSmartHome();
+        return this.smartHome;
     }
 
     @Bean
@@ -28,19 +33,30 @@ public class HomeConfiguration {
     }
 
     @Bean
-    SensorEventProvider sensorEventProvider() {
-        RandomSensorEventProvider eventProvider = new RandomSensorEventProvider();
-        return eventProvider;
+    EventManager eventManager() throws IOException {
+
+        EventManager manager = new EventsManagerAdapter();
+        if (smartHome == null){
+            smartHome = smartHome(new FileSmartHomeLoader());
+        }
+
+        manager.addHomeEventsProcessor(new SendSMSDecorator(new AlarmSirenDecorator(
+                new LightsEventProcessor(smartHome), smartHome), smartHome));
+        manager.addHomeEventsProcessor(new SendSMSDecorator(new AlarmSirenDecorator(
+                new DoorEventProcessor(smartHome), smartHome), smartHome));
+        manager.addHomeEventsProcessor(new SendSMSDecorator(new AlarmSirenDecorator(
+                new HallDoorEventProcessor(smartHome), smartHome), smartHome));
+        manager.addHomeEventsProcessor(new AlarmEventProcessor(smartHome));
+        return manager;
     }
 
     @Bean
-    HomeEventsObserver eventsObserver() throws IOException {
-        HomeEventsObserver observer = new HomeEventsObserver(sensorEventProvider());
-        observer.addEventProcessor(new SendSMSDecorator(new AlarmSirenDecorator(new LightsEventProcessor(smartHome()), smartHome()), smartHome()));
-        observer.addEventProcessor(new SendSMSDecorator(new AlarmSirenDecorator(new DoorEventProcessor(smartHome()), smartHome()), smartHome()));
-        observer.addEventProcessor(new SendSMSDecorator(new AlarmSirenDecorator(new HallDoorEventProcessor(smartHome()), smartHome()), smartHome()));
-        observer.addEventProcessor(new AlarmEventProcessor(smartHome()));
+    SensorEventsManager sensorEventsManager(){
+        return new SensorEventsManager();
+    }
 
-        return observer;
+    @Bean
+    RemoteControlRegistry remoteControlRegistry() {
+        return new RemoteControlRegistry();
     }
 }

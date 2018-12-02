@@ -3,8 +3,8 @@ package ru.sbt.mipt.oop.RC.Commands;
 import java.util.Stack;
 
 class CommandHistory {
-    private static Stack<Undoable> history = new Stack<Undoable>();
-    private static String LastRCID = "";
+    static Stack<Undoable> history = new Stack<Undoable>();
+    static String LastRCID = "";
 
     static void addToHist(Undoable command) {
         history.push(command);
