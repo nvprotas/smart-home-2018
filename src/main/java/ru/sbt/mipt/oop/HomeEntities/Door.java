@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.HomeEntities;
 
 import ru.sbt.mipt.oop.Action;
 
-public class Door implements HomeLeaf {
+public class Door implements HomeEntity {
     private final String id;
     private boolean isOpen;
 

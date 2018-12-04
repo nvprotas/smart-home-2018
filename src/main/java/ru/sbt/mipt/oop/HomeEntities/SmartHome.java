@@ -6,9 +6,9 @@ import ru.sbt.mipt.oop.Alarm.AlarmSiren;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome implements HomeContainer{
+public class SmartHome implements HomeEntity {
     Collection<Room> rooms;
-    Collection<HomeEntity> components;
+    protected Collection<HomeEntity> components;
     private AlarmSiren alarmSiren;
 
 
@@ -30,10 +30,10 @@ public class SmartHome implements HomeContainer{
         return rooms;
     }
 
-    @Override
-    public Collection<HomeEntity> getChildren() {
-        return components;
-    }
+//    @Override
+//    public Collection<HomeEntity> getChildren() {
+//        return components;
+//    }
 
     @Override
     public void execute(Action action) {

@@ -5,7 +5,7 @@ import ru.sbt.mipt.oop.Action;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Room implements HomeContainer {
+public class Room implements HomeEntity {
     private Collection<Light> lights;
     private Collection<Door> doors;
     private String name;
@@ -37,10 +37,10 @@ public class Room implements HomeContainer {
         return null;
     }
 
-    @Override
-    public Collection<HomeEntity> getChildren() {
-        return components;
-    }
+//    @Override
+//    public Collection<HomeEntity> getChildren() {
+//        return components;
+//    }
 
     @Override
     public void execute(Action action) {

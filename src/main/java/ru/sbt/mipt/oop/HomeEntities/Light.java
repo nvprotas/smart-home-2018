@@ -2,7 +2,7 @@ package ru.sbt.mipt.oop.HomeEntities;
 
 import ru.sbt.mipt.oop.Action;
 
-public class Light implements HomeLeaf{
+public class Light implements HomeEntity {
     private boolean isOn;
     private final String id;
 
