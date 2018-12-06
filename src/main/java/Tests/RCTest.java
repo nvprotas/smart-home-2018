@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RCTest {
 
+    CommandHistory commandHistory = new CommandHistory();
     class TestCommand implements Undoable {
 
             private String RCID;
@@ -39,7 +40,7 @@ class RCTest {
         }
     class TestController extends RemoteController {
             public TestController(String RCiD) {
-                super(RCiD);
+                super(RCiD, commandHistory);
             }
 
             public Command getCommndByKey(String key){
@@ -85,4 +86,5 @@ class RCTest {
         assertEquals(command2, history.getFromHist());
         assertEquals(command1, history.getFromHist());
     }
+
 }

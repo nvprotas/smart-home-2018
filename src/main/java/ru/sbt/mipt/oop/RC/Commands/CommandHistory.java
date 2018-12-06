@@ -1,23 +1,33 @@
 package ru.sbt.mipt.oop.RC.Commands;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.Stack;
 
+@Component
+@Scope("singleton")
 public class CommandHistory {
-    static Stack<Undoable> history = new Stack<Undoable>();
-    static String LastRCID = "";
 
-    public static void addToHist(Undoable command) {
+    Stack<Undoable> history;
+    String LastRCID;
+
+    public CommandHistory() {
+        history = new Stack<Undoable>();
+        LastRCID = "";
+    }
+
+    public void addToHist(Undoable command) {
         history.push(command);
     }
 
-//    private static String getLastRCID(){}
 
-    public static boolean isLastCommandIsMine(String RCID) {
+    public boolean isLastCommandIsMine(String RCID) {
         if (history.isEmpty()) {return false;}
         return (history.peek().getID().equals(RCID));
     }
 
-    public static Undoable getFromHist() {
+    public Undoable getFromHist() {
         return history.pop();
     }
 }

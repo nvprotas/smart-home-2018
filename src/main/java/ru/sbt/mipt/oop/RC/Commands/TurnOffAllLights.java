@@ -1,17 +1,24 @@
 package ru.sbt.mipt.oop.RC.Commands;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.sbt.mipt.oop.HomeConfiguration;
 import ru.sbt.mipt.oop.HomeEntities.Light;
 import ru.sbt.mipt.oop.HomeEntities.Room;
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
 
 public class TurnOffAllLights implements Undoable {
 
+
     final SmartHome smartHome;
     final String RCID;
+    CommandHistory commandHistory;
 
-    public TurnOffAllLights(SmartHome smartHome, String rcid) {
+    @Autowired
+    public TurnOffAllLights(SmartHome smartHome, String rcid, CommandHistory commandHistory) {
         this.smartHome = smartHome;
         RCID = rcid;
+        this.commandHistory = commandHistory;
     }
 
 
@@ -32,7 +39,7 @@ public class TurnOffAllLights implements Undoable {
 
     @Override
     public void execute() {
-        CommandHistory.addToHist(this);
+        commandHistory.addToHist(this);
         smartHome.execute(o -> {
             if (o instanceof Room){
                 Room room = (Room)o;

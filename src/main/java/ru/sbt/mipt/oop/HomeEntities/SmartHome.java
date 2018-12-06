@@ -2,6 +2,7 @@ package ru.sbt.mipt.oop.HomeEntities;
 
 import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Alarm.AlarmSiren;
+import ru.sbt.mipt.oop.RC.Commands.CommandHistory;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +11,7 @@ public class SmartHome implements HomeEntity {
     Collection<Room> rooms;
     protected Collection<HomeEntity> components;
     private AlarmSiren alarmSiren;
+    public CommandHistory commandHistory;
 
 
     public SmartHome(Collection<Room> rooms) {

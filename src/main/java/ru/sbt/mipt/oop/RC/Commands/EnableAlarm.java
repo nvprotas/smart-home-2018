@@ -1,15 +1,21 @@
 package ru.sbt.mipt.oop.RC.Commands;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import ru.sbt.mipt.oop.HomeConfiguration;
 import ru.sbt.mipt.oop.HomeEntities.SmartHome;
 
 public class EnableAlarm implements Undoable {
 
     final SmartHome smartHome;
     final String RCID;
+    CommandHistory commandHistory;
 
-    public EnableAlarm(SmartHome smartHome, String rcid) {
+    @Autowired
+    public EnableAlarm(SmartHome smartHome, String rcid, CommandHistory commandHistory) {
         this.smartHome = smartHome;
         RCID = rcid;
+        this.commandHistory = commandHistory;
     }
 
     @Override
@@ -19,7 +25,7 @@ public class EnableAlarm implements Undoable {
 
     @Override
     public void execute() {
-        CommandHistory.addToHist(this);
+        commandHistory.addToHist(this);
         smartHome.alarmEnable("password");
     }
 
