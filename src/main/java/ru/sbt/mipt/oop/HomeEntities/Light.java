@@ -30,4 +30,8 @@ public class Light implements HomeEntity {
     public void execute(Action action) {
         action.execute(this);
     }
+
+    public boolean isOn() {
+        return isOn;
+    }
 }
