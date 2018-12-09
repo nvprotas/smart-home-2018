@@ -4,12 +4,10 @@ import ru.sbt.mipt.oop.Action;
 import ru.sbt.mipt.oop.Alarm.AlarmSiren;
 import ru.sbt.mipt.oop.RC.Commands.CommandHistory;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements HomeEntity {
-    Collection<Room> rooms;
-    protected Collection<HomeEntity> components;
+    private Collection<Room> rooms;
     private AlarmSiren alarmSiren;
     public CommandHistory commandHistory;
 
@@ -21,7 +19,6 @@ public class SmartHome implements HomeEntity {
 
     public SmartHome() {
         alarmSiren = new AlarmSiren();
-        components = new ArrayList<>();
     }
 
     public void addRoom(Room room) {
@@ -32,19 +29,10 @@ public class SmartHome implements HomeEntity {
         return rooms;
     }
 
-//    @Override
-//    public Collection<HomeEntity> getChildren() {
-//        return components;
-//    }
-
     @Override
     public void execute(Action action) {
         action.execute(this);
-        if (components.isEmpty()) {
-            components = new ArrayList<>();
-            components.addAll(rooms);
-        }
-        components.forEach(c -> c.execute(action));
+        rooms.forEach(c -> c.execute(action));
     }
     public AlarmSiren getAlarmSiren() {
         return alarmSiren;
